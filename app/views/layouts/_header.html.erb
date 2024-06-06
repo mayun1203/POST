@@ -1,0 +1,29 @@
+<header>
+  <% if user_signed_in? %> %>
+    <li>
+      <%= link_to "Home", posts_path %>
+    </li>
+    <li>
+      <!--%= link_to "About", homes_about_path %-->
+    </li>
+    <li>
+      <%= link_to "Mypage", users_mypage_path %>
+    </li>
+    <li>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to "Home", root_path %>
+    </li>
+    <li>
+      <%= link_to "About", homes_about_path %>
+    </li>
+    <li>
+      <%= link_to "Login", new_user_session_path %>
+    </li>
+    <li>
+      <%= link_to "New", new_user_registration_path %>
+    </li>
+  <% end %>
+</header>
