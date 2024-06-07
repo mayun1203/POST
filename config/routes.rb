@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     get 'about', to: 'homes#about', as: :homes_about
     get 'mypage', to: 'users#mypage', as: :users_mypage
     resources :users, only: [:show, :edit, :update, :destroy]
-    resources :posts, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy]
+    resources :tweets, only: [:new, :index, :show, :edit, :create, :update, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

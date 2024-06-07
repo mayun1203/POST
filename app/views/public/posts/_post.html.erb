@@ -1,0 +1,6 @@
+<%= form_with model: posts do |f| %>
+  <!--%= f.label :body, "内容" %-->
+  <%= f.text_field :body %><br>
+  <%= f.file_field :image, accept: "image/*" %><br>
+  <%= f.submit "投稿" %>
+<% end %>

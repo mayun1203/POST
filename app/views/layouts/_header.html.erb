@@ -1,13 +1,13 @@
 <header>
   <% if user_signed_in? %> %>
     <li>
-      <%= link_to "Home", posts_path %>
-    </li>
-    <li>
-      <!--%= link_to "About", homes_about_path %-->
+      <%= link_to "Home", homes_about_path %>
     </li>
     <li>
       <%= link_to "Mypage", users_mypage_path %>
+    </li>
+    <li>
+      <%= link_to "Post", new_post_path %>
     </li>
     <li>
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
@@ -15,9 +15,6 @@
   <% else %>
     <li>
       <%= link_to "Home", root_path %>
-    </li>
-    <li>
-      <%= link_to "About", homes_about_path %>
     </li>
     <li>
       <%= link_to "Login", new_user_session_path %>
