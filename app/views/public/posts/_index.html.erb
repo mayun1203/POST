@@ -1,6 +1,14 @@
-<% posts.each do |post| %>
-  <tr>
-    <td><%= post.user.name %></td>
-    <td><%= post.body %></td>
-  </tr>
-<% end %>
+<div style="max-width: 18rem;">
+  <% posts.each do |post| %>
+  
+  　<div class="card-body text-dark" style="border: solid;">
+      <a><%= image_tag post.user.get_profile_image %></a>
+      <a><%= post.user.name %></a><br>
+      <a class="card_text"><%= post.body %></a><br>
+      <% if post.image.present? %>
+        <a><%= image_tag post.post_image(50,50) %></a>
+      <% end %>
+    </div>
+    
+  <% end %>
+</div>

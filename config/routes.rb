@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   scope module: 'public' do
     get 'about', to: 'homes#about', as: :homes_about
     get 'mypage', to: 'users#mypage', as: :users_mypage
+    get 'shine_new', to: 'posts#shine_new', as: :posts_shine_new
+    get 'dark_new', to: 'posts#dark_new', as: :posts_dark_new
     resources :users, only: [:show, :edit, :update, :destroy]
-    resources :posts, only: [:new, :index, :show, :edit, :create, :update, :destroy]
-    resources :tweets, only: [:new, :index, :show, :edit, :create, :update, :destroy]
+    resources :posts, only: [:index, :show, :edit, :create, :update, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

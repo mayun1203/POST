@@ -1,7 +1,22 @@
 class Public::PostsController < ApplicationController
 
-  def new
+  def shine_new
     @post = Post.new
+  end
+
+  def dark_new
+    @post = Post.new
+  end
+
+  def index
+    if params[:genre] == "shine"
+      @posts = Post.where(genre: 0)
+    elsif params[:genre] == "dark"
+      @posts = Post.where(genre: 1)
+    else
+      @posts = Post.all
+    end
+    @user = current_user
   end
 
   def create
@@ -30,6 +45,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :body, :image)
+    params.require(:post).permit(:name, :body, :image, :genre)
   end
 end
