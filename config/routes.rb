@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   scope module: 'public' do
     get 'about', to: 'homes#about', as: :homes_about
     get 'mypage', to: 'users#mypage', as: :users_mypage
+    get 'posts/shine_new', to: 'posts#shine_new', as: :posts_shine_new
+    get 'posts/dark_new', to: 'posts#dark_new', as: :posts_dark_new
     resources :users, only: [:show, :edit, :update, :destroy]
     resources :posts, only: [:index, :show, :edit, :create, :update, :destroy]
   end

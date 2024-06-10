@@ -1,0 +1,14 @@
+<div style="max-width: 18rem;">
+  <% posts.each do |post| %>
+    <div class="card-body text-dark" style="border: solid;">
+      <%= link_to post_path(post), class: "card-body text-dark text-decoration-none" do %>
+        <%= image_tag post.user.get_profile_image %>
+        <%= post.user.name %><br>
+        <div class="card_text"><%= post.body %></div><br>
+        <% if post.image.present? %>
+          <div><%= image_tag post.post_image(50,50) %></div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
