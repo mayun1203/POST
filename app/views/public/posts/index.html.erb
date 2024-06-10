@@ -1,7 +1,10 @@
 <div class='container mt-5'>
   <div class='row'>
-  	<div class='mx-auto'>
-    <%= render 'index', posts: @posts %>
+    <div class='col-md-3'>
+      <%= render 'post', posts: @posts, genre: @genre %>
+    </div>
+  	<div class='col-md-8 offset-md-1'>
+      <%= render 'index', posts: @posts %>
     </div>
   </div>
 </div>
