@@ -10,27 +10,27 @@
           <% if user_signed_in? %>
             <li>
               <%= link_to homes_about_path do %>
-              <i class="fa-solid fa-house-chimney"></i>
+              <i class="fa-solid fa-house-chimney"> Home </i>
               <% end %>
             </li>
             <li>
-              <%= link_to users_mypage_path do %>
-              <i class="fa-regular fa-circle-user"></i>
+              <%= link_to users_mypage_path(current_user.id) do %>
+              <i class="fa-regular fa-circle-user"> User </i>
               <% end %>
             </li>
             <li>
               <%= link_to posts_path(genre: "shine") do %>
-              <i class="fa-solid fa-sun"></i>
+              <i class="fa-solid fa-sun"> Sun </i>
               <% end %>
             </li>
             <li>
               <%= link_to posts_path(genre: "dark") do %>
-              <i class="fa-regular fa-moon"></i>
+              <i class="fa-regular fa-moon"> Moon </i>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fa-solid fa-right-from-bracket"></i>
+              <i class="fa-solid fa-right-from-bracket"> Logout</i>
               <% end %>
             </li>
           <% else %>

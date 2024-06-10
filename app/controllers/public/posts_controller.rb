@@ -28,7 +28,11 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     @post.save
-    redirect_to posts_path(genre: post_params[:genre])
+    if params[:post][:path] == "mypage"
+      redirect_to users_mypage_path
+    else
+      redirect_to posts_path(genre: post_params[:genre])
+    end
   end
 
   def update
