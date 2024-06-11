@@ -1,1 +1,37 @@
-<h1>ユーザー詳細ページ</h1>
+<div class='container'>
+  <div class='row'>
+    <div class='col-6 text-right'>
+      <div class="image">
+        <%= image_tag @user.get_profile_image, size:"200x200" %>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="profile-name"><%= @user.name %><br></div>
+      <%= @user.account_id %><br>
+      <%= @user.introduction %><br>
+    </div>
+    <div class="col-md-6 offset-md-3">
+      <div class="tabs">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#section1">SUN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#section2">MOON</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#section3">セクション3</a>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content">
+        <div id="section1" class="tab-pane fade show active">
+          <%= render 'public/posts/index', posts: @posts_shine, genre: "shine" %>
+        </div>
+        <div id="section2" class="tab-pane fade">
+          <%= render 'public/posts/index', posts: @posts_dark, genre: "dark" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -35,7 +35,21 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def edit
+    @genre = params[:genre]
+    @post = Post.find(params[:id])
+
+  end
+
   def update
+    @genre = params[:genre]
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "You have updated post successfully."
+      redirect_to posts_path(genre: post_params[:genre])
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -48,6 +62,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :body, :image, :genre)
+    params.require(:post).permit(:name, :avvount_id, :body, :image, :genre, :post)
   end
 end

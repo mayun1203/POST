@@ -1,7 +1,9 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-light" style="background-color: #bb0000;">
     <div class="container">
-      <%= link_to "POST", root_path, class:"text-light" %>
+      <%= link_to root_path, class:"text-light" do %>POST
+      <i class="fa-solid fa-dove"></i>
+      <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
       </button>
@@ -10,27 +12,32 @@
           <% if user_signed_in? %>
             <li>
               <%= link_to homes_about_path do %>
-              <i class="fa-solid fa-house-chimney"> Home </i>
+              <i class="fa-solid fa-house-chimney"></i>
               <% end %>
             </li>
             <li>
               <%= link_to users_mypage_path(current_user.id) do %>
-              <i class="fa-regular fa-circle-user"> User </i>
+              <i class="fa-regular fa-circle-user"></i>
               <% end %>
             </li>
             <li>
               <%= link_to posts_path(genre: "shine") do %>
-              <i class="fa-solid fa-sun"> Sun </i>
+              <i class="fa-solid fa-sun"></i>
               <% end %>
             </li>
             <li>
               <%= link_to posts_path(genre: "dark") do %>
-              <i class="fa-regular fa-moon"> Moon </i>
+              <i class="fa-regular fa-moon"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_user_path(current_user.id) do %>
+              <i class="fa-solid fa-gear"></i>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-              <i class="fa-solid fa-right-from-bracket"> Logout</i>
+              <i class="fa-solid fa-right-from-bracket"></i>
               <% end %>
             </li>
           <% else %>

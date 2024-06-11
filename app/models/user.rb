@@ -15,4 +15,9 @@ class User < ApplicationRecord
   def get_header_image
     header_image.variant(resize_to_limit: [width, height]).processed
   end
+
+  #退会ユーザーはログインできなくする
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end
