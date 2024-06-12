@@ -1,0 +1,8 @@
+<% if post.errors.any? %>
+  <%= post.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

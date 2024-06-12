@@ -1,1 +1,39 @@
-@use '~bootstrap/scss/bootstrap';
+//@use '~bootstrap/scss/bootstrap';
+
+i {
+  color: #fff;
+}
+
+.profile-name {
+  font-size: 30px;
+}
+
+footer {
+  max-width: 2000px;
+  margin: 0 auto;
+  background-color: #bb0000;
+
+}
+
+.footer-color {
+  color: #fff;
+}
+
+
+/* タブレット*/
+@media (max-width: 1024px) {
+  i {
+    width: 800px;
+    font-size: 18px;
+    color: blue;
+  }
+}
+
+/* スマホ */
+@media (max-width: 599px) {
+  i {
+    width: 500px;
+    font-size: 15px;
+    color: blue;
+  }
+}
