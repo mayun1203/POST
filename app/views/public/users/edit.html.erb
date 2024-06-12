@@ -1,20 +1,21 @@
 <div class='container mt-5'>
 	<div class='row'>
-  	<!--div class='mx-auto'-->
+  	<div class='mx-auto'>
   		<h4 class="col text-center">＼＼User Information／／</h4>
 
-  		<table class="table table-boederless text-center">
   		  <%= form_with model: @user do |f| %>
+  		    		<table class="table table-borderless text-center">
+
   		    <tr>
-  		      <th><%= f.label :account_id, "ユーザー名" %></td>
+  		      <th><%= f.label :account_id, "ユーザー名" %></th>
   		      <td><%= f.text_field :account_id %></td>
   		    </tr>
   		    <tr>
-  		      <th><%= f.label :email %></td>
+  		      <th><%= f.label :email %></th>
   		      <td><%= f.text_field :email %></td>
   		    </tr>
   		    <tr>
-  		      <th><%= f.label :phone_number %></td>
+  		      <th><%= f.label :phone_number %></th>
   		      <td><%= f.text_field :phone_nember %></td>
   		    </tr>
   		    <tr>
@@ -23,12 +24,13 @@
               <td>
                 <%= link_to "Good Bye", users_hide_user_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？？", class: "btn btn-outline-danger" %>
               </td>
-            <% end %>
-  		      <td><%= f.submit "Save", class: "btn btn-danger" %></td>
+              <% end %>
+  		        <td><%= f.submit "Save", class: "btn btn-danger" %></td>
+            </div>
           </tr>
-          </div>
+          </table>
   		  <% end %>
-  		</table>
-  	</div>
+
+ </div>
   </div>
 </div>

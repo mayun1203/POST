@@ -1,16 +1,19 @@
 class Public::PostsController < ApplicationController
 
   def index
+    delete_user_ids = User.where(is_active: false).pluck(:id)
     @genre = params[:genre]
     if @genre == "shine"
-      @posts = Post.where(genre: 0)
+      @posts = Post.where(genre: 0).where.not(user_id: delete_user_ids)
     elsif @genre == "dark"
-      @posts = Post.where(genre: 1)
+      @posts = Post.where(genre: 1).where.not(user_id: delete_user_ids)
     else
-      @posts = Post.all
+      @posts = Post.where.not(user_id: delete_user_ids)
     end
     @user = current_user
+    @post = Post.new
   end
+
 
   def show
     @post = Post.find(params[:id])
@@ -27,27 +30,33 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
+    genre = @post.genre
+    if @post.save
+    else
+      flash[:danger] = "投稿に失敗しました。"
+      @posts = Post.where(genre: genre)
+    end
+
     if params[:post][:path] == "mypage"
       redirect_to users_mypage_path
     else
-      redirect_to posts_path(genre: post_params[:genre])
+      render :index
     end
   end
 
   def edit
-    @genre = params[:genre]
     @post = Post.find(params[:id])
-
   end
 
   def update
-    @genre = params[:genre]
+
     @post = Post.find(params[:id])
+    @genre = @post.genre
     if @post.update(post_params)
       flash[:notice] = "You have updated post successfully."
-      redirect_to posts_path(genre: post_params[:genre])
+      redirect_to users_mypage_path(genre: @genre)
     else
+      flash[:danger] = "登録に失敗しました。"
       render :edit
     end
   end
@@ -56,12 +65,12 @@ class Public::PostsController < ApplicationController
     @posts = Post.all
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path(genre: post_params[:genre])
+    redirect_to users_mypage_path
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:name, :avvount_id, :body, :image, :genre, :post)
+    params.require(:post).permit(:name, :account_id, :body, :image, :genre, :post)
   end
 end

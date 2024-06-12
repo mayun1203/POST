@@ -22,7 +22,7 @@ footer {
 
 /* タブレット*/
 @media (max-width: 1024px) {
-  p {
+  i {
     width: 800px;
     font-size: 18px;
     color: blue;
@@ -31,9 +31,9 @@ footer {
 
 /* スマホ */
 @media (max-width: 599px) {
-  p {
+  i {
     width: 500px;
     font-size: 15px;
-    color: red;
+    color: blue;
   }
 }

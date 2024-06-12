@@ -8,6 +8,12 @@ class User < ApplicationRecord
   has_one_attached :header_image
   has_one_attached :profile_image
 
+  validates :name, presence: true
+  validates :account_id, presence: true
+  validates :phone_number, presence: true
+  validates :email, presence: true
+  validates :introduction, length: { maximum: 50 }
+
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'default-image.jpg'
   end

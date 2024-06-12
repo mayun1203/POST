@@ -1,5 +1,6 @@
 <h3>New Post</h3>
-<%= form_with(model: posts, url: posts_path, local: true) do |f| %>
+<%= render "layouts/error", post: post %>
+<%= form_with(model: post, url: posts_path, local: true) do |f| %>
   <%= f.hidden_field :genre, value: genre %>
   <%= f.text_field :body, size: "30" %><br>
   <%= f.file_field :image, accept: "image/*" %><br>
