@@ -1,0 +1,48 @@
+<div class='container mt-5'>
+	<div class='row'>
+  	<div class='col text-center'>
+    <h2>＼＼Welcome to POST／／</h2>
+
+    <%= render "public/shared/error_messages", resource: resource %>
+
+    <%= form_with(model: resource, url: user_registration_path) do |f| %>
+      <div class="field">
+        <%= f.label :name, "名前" %><br />
+        <%= f.text_field :name, autofocus: true, placeholder: "名前" %>
+      </div>
+      <div class="field">
+        <%= f.label :account_id, "アカウントID" %><br />
+        <%= f.text_field :account_id, placeholder: "@xxxxx" %>
+      </div>
+      <div class="field">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autocomplete: "email", placeholder: "sample@sample.com" %>
+      </div>
+      <div class="field">
+        <%= f.label :phone_number, "電話番号" %><br />
+        <%= f.text_field :phone_number, placeholder: "00000000000" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+    <% end %>
+    <h6>登録済の方は<%= render "public/shared/links" %>からお入りください。</h6>
+    </div>
+  </div>
+</div>
+
+

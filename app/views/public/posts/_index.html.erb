@@ -1,0 +1,19 @@
+<div style="max-width: 40rem;">
+  <% posts.each do |post| %>
+    <div class="card-body text-dark" style="border: solid;">
+      <%= link_to user_path(post.user) do %>
+        <%= image_tag post.user.get_profile_image, size:"50x50" %>
+        <%= post.user.name %>
+      <% end %>
+      <%= post.user.account_id %><br>
+      <div class="card_text text-center">
+        <%= post.body %><%= link_to post_path(post) do %>
+          <i class="fa-solid fa-envelope-open" style= "color: #bb0000;"><br></i>
+        <% end %>
+        <% if post.image.present? %>
+          <div><%= image_tag post.post_image(200,400) %></div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

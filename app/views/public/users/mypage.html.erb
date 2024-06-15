@@ -1,0 +1,56 @@
+<div class='container'>
+  <div class='row'>
+    <div clas="col">
+      <h3>New post</h3>
+      <%= render "layouts/error", post: @post %>
+      <%= form_with model: @post do |f| %>
+        <%= f.radio_button :genre, "shine", checked: true %>SUN
+        <%= f.radio_button :genre, "dark" %>MOON<br>
+        <%= f.text_field :body, size: "30" %><br>
+        <%= f.file_field :image, accept: "image/*" %><br>
+        <%= f.hidden_field :path, value: "mypage" %>
+        <%= f.submit "投稿" %>
+      <% end %>
+    </div>
+    <div class='col-3 text-right'>
+      <div class="image">
+        <%= image_tag @user.get_profile_image, size:"200x200" %>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="profile-name"><%= @user.name %><br></div>
+        <%= @user.account_id %><br>
+        <%= @user.introduction %><br>
+      <!--モーダルを使って編集に遷移-->
+      <div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+      <div class="offset-10 pb-2">
+        <%= link_to 'Profile_Edit', edit_user_path(@user), method: :get, class: "btn btn-secondary btn-sm", remote: true %>
+      </div>
+    </div>
+    <!-- タブとコンテンツ -->
+    <div class="col-md-6 offset-md-4">
+    <div class="tabs">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#section1">SUN</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#section2">MOON</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#section3">セクション3</a>
+        </li>
+      </ul>
+      </div>
+      <div class="tab-content">
+        <div id="section1" class="tab-pane fade show active">
+          <%= render 'public/posts/index', posts: @posts_shine, genre: "shine" %>
+        </div>
+        <div id="section2" class="tab-pane fade">
+          <%= render 'public/posts/index', posts: @posts_dark, genre: "dark" %>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
