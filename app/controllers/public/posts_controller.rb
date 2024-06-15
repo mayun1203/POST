@@ -70,6 +70,7 @@ class Public::PostsController < ApplicationController
 
   private
 
+
   def post_params
     params.require(:post).permit(:name, :account_id, :body, :image, :genre, :post)
   end
