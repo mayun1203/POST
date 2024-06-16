@@ -19,6 +19,10 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    # コメント一覧表示で使用する全コメントデータを代入（新着順で表示）
+    @comments = @post.comments.order(created_at: :desc)
+    # コメントの作成
+    @comment = Comment.new
   end
 
   def shine_new
