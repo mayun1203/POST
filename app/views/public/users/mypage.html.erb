@@ -2,7 +2,7 @@
   <div class='row'>
     <div clas="col">
       <h3>New post</h3>
-      <%= render "layouts/error", post: @post %>
+      <%= render "layouts/error", obj: @post %>
       <%= form_with model: @post do |f| %>
         <%= f.radio_button :genre, "shine", checked: true %>SUN
         <%= f.radio_button :genre, "dark" %>MOON<br>
