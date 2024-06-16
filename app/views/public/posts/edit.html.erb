@@ -1,5 +1,5 @@
 <h3>Edit Post</h3>
-<%= render "layouts/error", post: @post %>
+<%= render "layouts/error", obj: @post %>
 <%= form_with model: @post do |f| %>
   <%= f.text_field :body, size: "30" %><br>
   <%= f.file_field :image, accept: "image/*" %><br>

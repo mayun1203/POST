@@ -23,15 +23,17 @@ class Public::UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @genre = params[:genre]
+    redirect_to users_mypage_path unless current_user.id == @user.id
   end
 
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      flash[:success] = "登録に成功しました。"
       redirect_to users_mypage_path
     else
       flash[:danger] = "登録に失敗しました。"
-      redirect_to users_mypage_path
+      render :edit
     end
   end
 
@@ -39,13 +41,13 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(is_active: false)
     reset_session
-    flash[:notice] = "退会処理が完了いたしました。またのご利用を心よりお待ちしております。"
+    flash[:success] = "退会処理が完了いたしました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:header_image, :profile_image, :name, :account_id, :introduction, :genre)
+    params.require(:user).permit(:header_image, :profile_image, :name, :account_id, :email, :phone_number, :introduction, :genre)
   end
 
   def set_user

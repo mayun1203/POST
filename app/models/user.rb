@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :phone_number, presence: true
   validates :email, presence: true
   validates :introduction, length: { maximum: 50 }
+  #validates :body, presence: true, length: { maximum: 200 }
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'default-image.jpg'
