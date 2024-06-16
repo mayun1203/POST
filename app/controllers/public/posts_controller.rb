@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
     delete_user_ids = User.where(is_active: false).pluck(:id)
@@ -35,12 +37,21 @@ class Public::PostsController < ApplicationController
     else
       flash[:danger] = "投稿に失敗しました。"
       @posts = Post.where(genre: genre)
+      @user = current_user
+      @posts = @user.posts
+      @genre = params[:genre]
+      @posts_shine = @posts.where(genre: 0)
+      @posts_dark = @posts.where(genre: 1)
+      if params[:post][:path] == "mypage"
+      render '/public/users/mypage'
+      end
+      return
     end
 
     if params[:post][:path] == "mypage"
       redirect_to users_mypage_path
     else
-      render :index
+      redirect_back(fallback_location: homes_about_path)
     end
   end
 
@@ -49,15 +60,14 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-
     @post = Post.find(params[:id])
     @genre = @post.genre
     if @post.update(post_params)
-      flash[:notice] = "You have updated post successfully."
+      flash[:success] = "投稿に成功しました。"
       redirect_to users_mypage_path(genre: @genre)
     else
       flash[:danger] = "登録に失敗しました。"
-      render :edit
+      render 'public/posts/edit'
     end
   end
 
@@ -70,8 +80,14 @@ class Public::PostsController < ApplicationController
 
   private
 
-
   def post_params
     params.require(:post).permit(:name, :account_id, :body, :image, :genre, :post)
+  end
+
+  def correct_user
+    @post = Post.find(params[:id])
+    @user = @post.user
+    @genre = @post.genre
+    redirect_to posts_path(@genre) unless @user == current_user
   end
 end
