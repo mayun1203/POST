@@ -1,16 +1,33 @@
 <div class='container mt-5'>
   <div class='row'>
     <div class='mx-auto'>
-        <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image %><% end %>
+      <div class="card-body text-dark" style="border: solid;">
+        <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, size: "40x40" %><% end %>
         <%= link_to user_path(@post) do %><%= @post.user.name %><% end %><%= @post.user.account_id %><br>
-        <%= @post.body %><br>
-        <% if @post.image.present? %>
-          <div><%= image_tag @post.post_image(300,500) %></div>
-        <% end %>
-        <% if @post.user == current_user %>
-          <%= link_to "Edit", edit_post_path(@post), class: "btn btn-secondary btn-sm" %>
-          <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-        <% end %>
+        <div class="card_text text-center">
+          <%= @post.body %><br>
+          <% if @post.image.present? %>
+            <div><%= image_tag @post.post_image(300,500) %></div>
+          <% end %>
+        </div>
+        <table class="table">
+          <tr>
+            <td id="comments-counter">
+              <%= render "public/comments/counter", post: @post %>
+            </td>
+            <td>
+              <% if @post.user == current_user %>
+                <%= link_to "Edit", edit_post_path(@post), class: "btn btn-secondary btn-sm" %>
+                <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+              <% end %>
+            </td>
+          </tr>
+        </table>
+        <div id="comments-index">
+          <%= render "public/comments/index", post: @post %>
+        </div>
+        <%= render "public/comments/form", post: @post, comment: @comment %>
+      </div>
     </div>
   </div>
 </div>

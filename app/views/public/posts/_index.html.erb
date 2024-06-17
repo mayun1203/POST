@@ -1,4 +1,4 @@
-<div style="max-width: 30rem;">
+<div style="max-width: 25rem;">
   <% posts.each do |post| %>
     <div class="card-body text-dark" style="border: solid;">
       <%= link_to user_path(post.user) do %>
@@ -14,6 +14,7 @@
           <div><%= image_tag post.post_image(200,400) %></div>
         <% end %>
       </div>
+      <%= render "public/comments/counter", post: post %>
     </div>
   <% end %>
 </div>
