@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_one_attached :header_image
   has_one_attached :profile_image
 
   validates :name, presence: true
@@ -21,8 +20,18 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'default-image.jpg'
   end
 
-  def get_header_image
-    header_image.variant(resize_to_limit: [width, height]).processed
+  def self.looks(search, word)
+    if search == "perfect"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
   end
 
   #退会ユーザーはログインできなくする
