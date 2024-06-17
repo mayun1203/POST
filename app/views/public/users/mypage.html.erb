@@ -1,6 +1,9 @@
 <div class='container'>
   <div class='row'>
     <div clas="col">
+      <div class="d-flex justify-content-center mb-2">
+        <%= render "public/searches/form" %>
+      </div>
       <h3>New post</h3>
       <%= render "layouts/error", obj: @post %>
       <%= form_with model: @post do |f| %>
@@ -12,12 +15,12 @@
         <%= f.submit "投稿" %>
       <% end %>
     </div>
-    <div class='col-3 text-right'>
+    <div class='col-3'>
       <div class="image">
         <%= image_tag @user.get_profile_image, size:"200x200" %>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-2">
       <div class="profile-name"><%= @user.name %><br></div>
         <%= @user.account_id %><br>
         <%= @user.introduction %><br>

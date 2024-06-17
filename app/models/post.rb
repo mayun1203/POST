@@ -10,4 +10,18 @@ class Post < ApplicationRecord
   def post_image(width, height)
     image.variant(resize_to_limit: [width, height]).processed
   end
+
+  def self.looks(search, word)
+    if search == "perfect"
+      @post = Post.where("body LIKE?","#{word}")
+    elsif search == "forward"
+      @post = Post.where("body LIKE?","#{word}%")
+    elsif search == "backward"
+      @post = Post.where("body LIKE?","%#{word}")
+    elsif search == "partial"
+      @post = Post.where("body LIKE?","%#{word}%")
+    else
+      @post = Post.all
+    end
+  end
 end
