@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'posts/shine_new', to: 'posts#shine_new', as: :posts_shine_new
     get 'posts/dark_new', to: 'posts#dark_new', as: :posts_dark_new
     get "/search", to: "searches#search"
+
     resources :users, only: [:show, :edit, :update, :destroy] do
       member do
         delete :hide, as: 'users_hide'
@@ -32,7 +33,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
-
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
+    resources :posts, only: [:show, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
