@@ -7,7 +7,6 @@ class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @post = Post.find(params[:id])
   end
 
   def edit
@@ -18,12 +17,6 @@ class Admin::UsersController < ApplicationController
     user = User.find(params[:id])
     user.update(user_params)
     redirect_to admin_users_path
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to admin_user_path(@user)
   end
 
   private

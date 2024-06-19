@@ -2,9 +2,8 @@
   <div class='row'>
     <div class='mx-auto'>
       <div class="card-body text-dark" style="border: solid;">
-        <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, size: "40x40" %><% end %>
-        <%= link_to user_path(@post) do %><%= @post.user.name %>
-        <% end %>
+        <%= image_tag @post.user.get_profile_image, size: "40x40" %>
+        <%= @post.user.name %>
         <%= @post.user.account_id %><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %><br>
         <div class="card_text text-center">
           <%= @post.body %><br>
@@ -18,17 +17,14 @@
               <%= render "public/comments/counter", post: @post %>
             </td>
             <td>
-              <% if @post.user == current_user %>
-                <%= link_to "Edit", edit_post_path(@post), class: "btn btn-secondary btn-sm" %>
-                <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-              <% end %>
+              <%= link_to "Delete", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
             </td>
           </tr>
         </table>
         <div id="comments-index">
           <%= render "public/comments/index", post: @post %>
         </div>
-        <%= render "public/comments/form", post: @post, comment: @comment %>
+        <!--%= render "public/comments/form", post: @post, comment: @comment %-->
       </div>
     </div>
   </div>
