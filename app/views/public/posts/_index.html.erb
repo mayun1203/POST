@@ -5,7 +5,7 @@
         <%= image_tag post.user.get_profile_image, size:"50x50" %>
         <%= post.user.name %>
       <% end %>
-      <%= post.user.account_id %><br>
+      <%= post.user.account_id %><%= post.created_at.strftime('%Y/%m/%d %H:%M') %><br>
       <div class="card_text text-center">
         <%= post.body %><%= link_to post_path(post) do %>
           <i class="fa-solid fa-envelope-open" style= "color: #bb0000;"><br></i>

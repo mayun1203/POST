@@ -11,6 +11,7 @@ class Post < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
   end
 
+  #投稿内容
   def self.looks(search, word)
     if search == "perfect"
       @post = Post.where("body LIKE?","#{word}")
@@ -24,4 +25,6 @@ class Post < ApplicationRecord
       @post = Post.all
     end
   end
+
+
 end

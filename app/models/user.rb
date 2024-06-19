@@ -20,6 +20,7 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'default-image.jpg'
   end
 
+  #ユーザー検索
   def self.looks(search, word)
     if search == "perfect"
       @user = User.where("name LIKE?", "#{word}")
@@ -33,6 +34,8 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+
+
 
   #退会ユーザーはログインできなくする
   def active_for_authentication?

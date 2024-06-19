@@ -7,7 +7,28 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
+          <% if admin_signed_in? %>
+            <li>
+              <%= link_to admin_root_path do %>POST
+                <i class="fa-solid fa-dove"></i>
+              <% end %>
+            </li>
+            <li>
+              <%=link_to admin_root_path do %>
+                <i class="fa-solid fa-envelopes-bulk"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_users_path do %>
+                <i class="fa-solid fa-people-robbery"></i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete do %>
+                <i class="fa-solid fa-right-from-bracket"></i>
+              <% end %>
+            </li>
+          <% elsif user_signed_in? %>
             <li>
               <div class="font" style="text-align: left;">
                 <%= link_to homes_about_path do %>POST
