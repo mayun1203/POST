@@ -24,10 +24,14 @@ Rails.application.routes.draw do
       member do
         delete :hide, as: 'users_hide'
       end
+      member do
+        get :liked_posts
+      end
     end
 
     resources :posts, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
   end
 

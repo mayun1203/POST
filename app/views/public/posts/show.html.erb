@@ -25,6 +25,9 @@
             </td>
           </tr>
         </table>
+        <div class=<%= "favorite-" + @post.id.to_s %> >
+            <%= render "public/favorites/btn", post: @post %>
+        </div>
         <div id="comments-index">
           <%= render "public/comments/index", post: @post %>
         </div>
