@@ -8,6 +8,7 @@ class Public::UsersController < ApplicationController
     @posts_shine = @posts.where(genre: 0)
     @posts_dark = @posts.where(genre: 1)
     @post = Post.new
+    @liked_posts = Post.liked_posts(current_user)
   end
 
   def show

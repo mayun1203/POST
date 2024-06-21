@@ -36,8 +36,6 @@ class User < ApplicationRecord
     end
   end
 
-
-
   #退会ユーザーはログインできなくする
   def active_for_authentication?
     super && (is_active == true)
