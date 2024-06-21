@@ -32,18 +32,18 @@
     </div>
     <!-- タブとコンテンツ -->
     <div class="col-md-6 offset-md-4">
-    <div class="tabs">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="tab" href="#section1">SUN</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#section2">MOON</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="tab" href="#section3">セクション3</a>
-        </li>
-      </ul>
+      <div class="tabs">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#section1">SUN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#section2">MOON</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#section3">FAVORITES</a>
+          </li>
+        </ul>
       </div>
       <div class="tab-content">
         <div id="section1" class="tab-pane fade show active">
@@ -52,6 +52,8 @@
         <div id="section2" class="tab-pane fade">
           <%= render 'public/posts/index', posts: @posts_dark, genre: "dark" %>
         </div>
+        <div id="section3" class="tab-pane fade">
+          <%= render 'public/favorites/index', liked_posts: @liked_posts %>
         </div>
       </div>
     </div>

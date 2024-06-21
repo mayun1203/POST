@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -34,8 +35,6 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
-
-
 
   #退会ユーザーはログインできなくする
   def active_for_authentication?
