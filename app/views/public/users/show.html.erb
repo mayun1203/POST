@@ -9,6 +9,9 @@
       <div class="profile-name"><%= @user.name %><br></div>
       <%= @user.account_id %><br>
       <%= @user.introduction %><br>
+      <div id= "relationship_<%= @user.id %>">
+        <%= render "public/relationships/btn", user: @user %>
+      </div>
     </div>
     <div class="col-md-6 offset-md-3">
       <div class="tabs">

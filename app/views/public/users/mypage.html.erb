@@ -21,9 +21,12 @@
       </div>
     </div>
     <div class="col-2">
-      <div class="profile-name"><%= @user.name %><br></div>
-        <%= @user.account_id %><br>
-        <%= @user.introduction %><br>
+      <div class="profile-name">
+        <%= @user.name %><br>
+      </div>
+      <%= @user.account_id %><br>
+      <%= @user.introduction %><br>
+
       <!--モーダルを使って編集に遷移-->
       <div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
       <div class="offset-10 pb-2">

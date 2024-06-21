@@ -27,12 +27,17 @@ Rails.application.routes.draw do
       member do
         get :liked_posts
       end
+      member do
+        get :followings, :followers
+      end
     end
 
     resources :posts, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+
+    resources :relationships, only: [:create, :destroy]
   end
 
   namespace :admin do
