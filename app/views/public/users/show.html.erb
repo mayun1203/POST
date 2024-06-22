@@ -12,6 +12,8 @@
       <div id= "relationship_<%= @user.id %>">
         <%= render "public/relationships/btn", user: @user %>
       </div>
+      <%= link_to "フォロー", followings_user_path(@user) %>
+      <%= link_to "フォロワー", followers_user_path(@user) %>
     </div>
     <div class="col-md-6 offset-md-3">
       <div class="tabs">

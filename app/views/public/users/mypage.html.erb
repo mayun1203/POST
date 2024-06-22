@@ -26,6 +26,8 @@
       </div>
       <%= @user.account_id %><br>
       <%= @user.introduction %><br>
+      <%= link_to "フォロー", followings_user_path(@user) %>
+      <%= link_to "フォロワー", followers_user_path(@user) %>
 
       <!--モーダルを使って編集に遷移-->
       <div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

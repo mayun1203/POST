@@ -47,7 +47,7 @@ class Public::UsersController < ApplicationController
   end
 
   def followers
-    @user = @user.followers
+    @users = @user.followers
   end
 
   def hide
