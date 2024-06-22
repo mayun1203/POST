@@ -42,6 +42,16 @@ class Public::UsersController < ApplicationController
     @liked_posts = Post.liked_posts(current_user)
   end
 
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+
   def hide
     @user = User.find(params[:id])
     @user.update(is_active: false)

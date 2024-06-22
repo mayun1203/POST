@@ -9,6 +9,14 @@
       <div class="profile-name"><%= @user.name %><br></div>
       <%= @user.account_id %><br>
       <%= @user.introduction %><br>
+      <div id= "relationship_<%= @user.id %>">
+        <%= render "public/relationships/btn", user: @user %>
+      </div>
+      <%= link_to "フォロー", followings_user_path(@user) %>
+      <%= link_to "フォロワー", followers_user_path(@user) %>
+      <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+        <%= link_to 'chatを始める', chat_path(@user.id), class: "ml-3" %>
+      <% end %>
     </div>
     <div class="col-md-6 offset-md-3">
       <div class="tabs">
