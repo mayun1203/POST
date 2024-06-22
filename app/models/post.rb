@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
   has_one_attached :image
 
   validates :body, presence: true, length: { maximum: 200 }
@@ -35,5 +37,25 @@ class Post < ApplicationRecord
   includes(:favorites) # 2. post_favorites テーブルを結合
     .where(favorites: { user_id: user.id }) # 3. ユーザーがいいねしたレコードを絞り込み
     .order(created_at: :desc) # 4. 投稿を作成日時の降順でソート
+  end
+
+  # postへのいいね通知機能
+  def create_notification_favorite_post!(current_user)
+    # 同じユーザーが同じ投稿に既にいいねしていないかを確認
+    existing_notification = Notification.find_by(post_id: self.id, visitor_id: current_user.id, action: "favorite_post")
+
+    # すでにいいねされていない場合のみ通知レコードを作成
+    if existing_notification.nil? && current_user != self.user
+        notification = Notification.new(
+        post_id: self.id,
+        visitor_id: current_user.id,
+        visited_id: self.user.id,
+        action: "favorite_post"
+      )
+
+      if notification.valid?
+        notification.save
+      end
+    end
   end
 end

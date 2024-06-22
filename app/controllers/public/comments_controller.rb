@@ -7,6 +7,9 @@ class Public::CommentsController < ApplicationController
     # コメント投稿者(user)のidを代入
     @comment.user_id = current_user.id
     @comment.save
+
+    #コメントの投稿に対する作成・保存
+    @post.create_notification_comment!(current_user, @comment.id)
   end
 
   def destroy

@@ -37,6 +37,10 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
 
+    resources :notifications, only: [:index] do
+      post :update_checked, on: :collection
+    end
+
     resources :relationships, only: [:create, :destroy]
     resources :chats, only: [:show, :create, :destroy]
   end
