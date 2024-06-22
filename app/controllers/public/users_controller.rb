@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :set_user, :only => [:mypage, :show, :followings, :followers, :destroy]
+  before_action :set_user, :only => [:mypage, :show, :destroy]
 
   def mypage
     @user = current_user
@@ -43,10 +43,12 @@ class Public::UsersController < ApplicationController
   end
 
   def followings
+    @user = User.find(params[:id])
     @users = @user.followings
   end
 
   def followers
+    @user = User.find(params[:id])
     @users = @user.followers
   end
 

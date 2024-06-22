@@ -5,7 +5,7 @@ class Public::ChatsController < ApplicationController
   def show
     @user = User.find(params[:id])
     rooms = current_user.user_rooms.pluck(:room_id)
-    user_rooms = UserRoom.find_by(user_id: @user.id, room_id:rooms)
+    user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
     unless user_rooms.nil?
       @room = user_rooms.room
     else
@@ -16,7 +16,7 @@ class Public::ChatsController < ApplicationController
       UserRoom.create(user_id: @user.id, room_id: @room.id)
     end
     @chats = @room.chats
-    @chat = Chat.new(room_id: @room_id)
+    @chat = Chat.new(room_id: @room.id)
   end
 
   def create
@@ -26,7 +26,7 @@ class Public::ChatsController < ApplicationController
 
   def destroy
     @chat = current_user.chats.find(params[:id])
-    @chat.dentroy
+    @chat.destroy
   end
 
   private

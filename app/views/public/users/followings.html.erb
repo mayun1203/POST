@@ -1,0 +1,9 @@
+<P>フォロー一覧</P>
+<% @users.each do |user| %>
+  <%= link_to user_path(user) do %>
+    <%= image_tag user.get_profile_image, size: "40x40" %>
+    <%= user.name %>
+  <% end %>
+  <%= user.account_id %><br>
+  <%= user.introduction %>
+<% end %>
