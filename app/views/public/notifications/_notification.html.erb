@@ -1,28 +1,29 @@
 <% notifications.each do |notification| %>
   <% visitor = notification.visitor %>
   <% visited = notification.visited %>
-  <div class="col-md-12 mx-auto notification-container">
+    <div class="col-md-12 mx-auto notification-container">
     <div class="notification-box d-flex align-items-center">
       <div class="notification-icon">
-        <%= link_to user_path(visitor.account), data: { turbolinks: false } do %>
-          <%= user_icon_or_youtube(visitor, size: '40x40', class: 'rounded-circle mr-3') %>
+        <%= link_to user_path(visitor), data: { turbolinks: false } do %>
+          <%= image_tag(visitor.get_profile_image, size: '40x40', class: 'rounded-circle mr-3') %>
         <% end %>
       </div>
 
       <!--通知の種類に応じて表示内容を切り替え-->
-      <% case notification.action %>
       <!--フォロー通知-->
-      <% when 'follow' then %>
-        <strong><%= visitor.name %></strong>さんがあなたをフォローしました
+      <% if notification.action == 'follow' %>
+        <%= link_to user_path(visitor) do %>
+          <strong><%= visitor.name %></strong>さんがあなたをフォローしました
+        <% end %>
 
       <!--投稿がいいねされた通知-->
-      <% when 'favorite' then %>
+      <% elsif notification.action == 'favorite_post' %>
         <%= link_to post_path(notification.post) do %>
           <strong><%= visitor.name %></strong>さんが<strong><%= truncate(notification.post.body, length: 10) %></strong>の投稿にいいねしました
         <% end %>
 
       <!--コメントが投稿された通知-->
-      <% when 'comment' then %>
+      <% elsif notification.action == 'comment' %>
         <!--自分自身の投稿へのコメントの場合-->
         <% if notification.post.user_id == visited.id %>
           <%= link_to post_path(notification.post) do %>
