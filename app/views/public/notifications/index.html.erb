@@ -1,0 +1,16 @@
+
+<!--未確認通知を表示-->
+<% if @unchecked_notifications.any? %>
+  <%= render "public/notifications/notification", notifications: @unchecked_notifications %>
+<%# end %>
+
+<!--確認済み通知を表示-->
+<%# if @checked_notifications.any? %>
+  <%#= render "public/notifications/notification", notifications: @checked_notifications %>
+<%# end %>
+
+ <!--通知が一つもない場合の表示-->
+<%# if @unchecked_notifications.empty? && @checked_notifications.empty? %>
+<% else %>
+  <p>通知はありません</p>
+<% end %>

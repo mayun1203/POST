@@ -57,6 +57,24 @@
               <% end %>
             </li>
             <li>
+              <div class="mypage-nav d-flex align-items-center">
+                <div class="bell-container mr-3">
+                  <a href="javascript:void(0)" id="notifications-link">
+                    <% if unchecked_notifications.any? %>
+                      <span class="fa-stack" style="vertical-align: middle;">
+                        <i class="far fa-bell fa-lg fa-stack-1x" style="font-size: 1.5em;"></i>
+                        <i class="fas fa-circle n-circle fa-stack-1x">
+                          <span class="notification-count"><%= unchecked_notifications.count %></span>
+                        </i>
+                      </span>
+                    <% else %>
+                      <i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>
+                    <% end %>
+                  </a>
+                </div>
+              </div>
+            </li>
+            <li>
               <%= link_to edit_user_path(current_user.id) do %>
                 <i class="fa-solid fa-gear"></i>
               <% end %>
@@ -92,4 +110,48 @@
       </div>
     </div>
   </nav>
+  <!--通知一覧を表示するモーダルウィンドウ-->
+  <div id="notifications-modal" class="modal">
+    <div class="common-modal-content"></div>
+  </div>
 </header>
+
+<script>
+  $(document).ready(function() {
+    $('#notifications-link').click(function() {
+      //通知を確認済みに更新するアクションの呼び出し
+      $.ajax({
+        url: '<%= update_checked_notifications_path %>',
+        type: 'POST',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        success: function() {
+          $('.n-circle').removeClass('orange');
+          $('#notifications-link').html('<i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>');
+
+          //通知モーダルを表示する処理
+          $.ajax({
+            url: '<%= notifications_path(@user) %>',
+            type: 'GET',
+            success: function(response) {
+              $('#notifications-modal .common-modal-content').html(response);
+              $('#notifications-modal').addClass('fade-in').show();
+            }
+          });
+        }
+      });
+    });
+
+    //モーダル内のクリックイベントを停止
+    $('#notifications-modal .modal-content').on('click', function(event) {
+      event.stopPropagation(); //イベントの伝播を停止
+    });
+
+    //モーダル外（背景）をクリックしたときにモーダルを閉じる
+    $('#notifications-modal').on('click', function() {
+      $(this).addClass('fade-out');
+      setTimeout(() => {
+        $(this).hide().removeClass('fade-out');
+      }, 300);
+    });
+  });
+</script>

@@ -9,6 +9,8 @@ class Public::UsersController < ApplicationController
     @posts_dark = @posts.where(genre: 1)
     @post = Post.new
     @liked_posts = Post.liked_posts(current_user)
+    #通知を確認済みに更新
+    current_user.passive_notifications.update_all(is_checked: true)
   end
 
   def show

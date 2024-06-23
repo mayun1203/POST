@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
   has_many :rooms, through: :user_rooms
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -54,6 +56,22 @@ class User < ApplicationRecord
       @user = User.where("name LIKE?","%#{word}%")
     else
       @user = User.all
+    end
+  end
+
+   # フォロー通知を作成するメソッド
+  def create_notification_follow!(current_user)
+
+    # すでにフォロー通知が存在するか検索
+    existing_notification = Notification.find_by(visitor_id: current_user.id, visited_id: self.id, action: 'follow')
+
+    # フォロー通知が存在しない場合のみ、通知レコードを作成
+    if existing_notification.blank?
+      notification = current_user.active_notifications.build(
+        visited_id: self.id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
     end
   end
 

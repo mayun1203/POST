@@ -23,6 +23,8 @@ class Public::PostsController < ApplicationController
     @comments = @post.comments.order(created_at: :desc)
     # コメントの作成
     @comment = Comment.new
+    #通知を確認済みに更新
+    current_user.passive_notifications.update_all(is_checked: true)
   end
 
   def shine_new
