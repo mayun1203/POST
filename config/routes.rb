@@ -5,14 +5,10 @@ Rails.application.routes.draw do
   }
 
   #会員用(URL/users/sign_in)
-  devise_for :users, controllers: {
+  devise_for :users, skip:[:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions',
-    passwords: 'public/passwords'
+    sessions: 'public/sessions'
   }
-
-#skip:[:passwords],
-
 
   root to: "public/homes#top"
 
@@ -47,6 +43,10 @@ Rails.application.routes.draw do
 
     resources :relationships, only: [:create, :destroy]
     resources :chats, only: [:show, :create, :destroy]
+  end
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
 
   namespace :admin do

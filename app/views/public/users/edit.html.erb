@@ -21,7 +21,9 @@
   		    </tr>
   		    <tr>
             <td>
-              <%= link_to "Good Bye", users_hide_user_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？？", class: "btn btn-outline-danger" %>
+              <% unless current_user.guest? %>
+                <%= link_to "Good Bye", users_hide_user_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？？", class: "btn btn-outline-danger" %>
+              <% end %>
             </td>
 		        <td><%= f.submit "Save", class: "btn btn-danger" %></td>
           </tr>
