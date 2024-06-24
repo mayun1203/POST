@@ -75,6 +75,21 @@ class User < ApplicationRecord
     end
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest1@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base65
+      user.name = "ゲスト"
+      user.account_id = "@guest"
+      user.phone_number = "09000000000"
+      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+  end
+
+  def guest?
+    account_id == "@guest"
+  end
+
   #退会ユーザーはログインできなくする
   def active_for_authentication?
     super && (is_active == true)

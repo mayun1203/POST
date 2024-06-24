@@ -45,6 +45,10 @@ Rails.application.routes.draw do
     resources :chats, only: [:show, :create, :destroy]
   end
 
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:index, :show, :edit, :update, :destroy]
