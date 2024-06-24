@@ -1,6 +1,6 @@
 <div style="max-width: 25rem;">
   <% liked_posts.each do |post| %>
-    <div class="card-body text-dark" style="border: solid;">
+    <div class="card-body text-dark mt-3" style="border: solid;">
       <%= link_to user_path(post.user) do %>
         <%= image_tag post.user.get_profile_image, size:"50x50" %>
         <%= post.user.name %>

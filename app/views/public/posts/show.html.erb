@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='mx-auto'>
       <div class="card-body text-dark" style="border: solid;">
-        <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, size: "40x40" %><% end %>
+        <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, class:"rounded-circle", size: "40x40" %><% end %>
         <%= link_to user_path(@post) do %><%= @post.user.name %>
         <% end %>
         <%= @post.user.account_id %><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %><br>

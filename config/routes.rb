@@ -42,7 +42,10 @@ Rails.application.routes.draw do
     end
 
     resources :relationships, only: [:create, :destroy]
-    resources :chats, only: [:show, :create, :destroy]
+
+    resources :rooms, only: [:index, :new, :create] do
+      resources :chats, only: [:show, :create, :destroy]
+    end
   end
 
   devise_scope :user do

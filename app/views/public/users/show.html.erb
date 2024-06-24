@@ -2,7 +2,7 @@
   <div class='row'>
     <div class='col-6 text-right'>
       <div class="image">
-        <%= image_tag @user.get_profile_image, size:"200x200" %>
+        <%= image_tag @user.get_profile_image, class:"rounded-circle", size:"200x200" %>
       </div>
     </div>
     <div class="col-3">
@@ -15,8 +15,13 @@
       <%= link_to "フォロー", followings_user_path(@user) %>
       <%= link_to "フォロワー", followers_user_path(@user) %>
       <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-        <%= link_to 'chatを始める', chat_path(@user.id), class: "ml-3" %>
+        <%= link_to 'chatを始める', room_chat_path(@user.id), class: "ml-3" %>
       <% end %>
+      <%#= link_to (rooms_path(user_ids: [current_user.id, @profile.user.id]), method: :post, class: "ml-3") do %>
+          <!--div class="chat-btn">
+           <div class="chat-p">チャットで相談する</div>
+          </div-->
+        <%# end %>
     </div>
     <div class="col-md-6 offset-md-3">
       <div class="tabs">

@@ -1,5 +1,14 @@
 //@use '~bootstrap/scss/bootstrap';
 
+header {
+  position: sticky;
+  top: 0;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+}
+
 i {
   color: #fff;
 }
@@ -8,10 +17,8 @@ i {
   font-size: 30px;
 }
 
-
-
 footer {
-  max-width: 2000px;
+  max-width: 1500px;
   margin: 0 auto;
   background-color: #bb0000;
 

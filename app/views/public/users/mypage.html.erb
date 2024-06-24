@@ -1,9 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div clas="col">
-      <div class="d-flex justify-content-center mb-2">
-        <%= render "public/searches/form" %>
-      </div>
+      <%= render "public/searches/form" %>
       <h3>New post</h3>
       <%= render "layouts/error", obj: @post %>
       <%= form_with model: @post do |f| %>
@@ -17,7 +15,7 @@
     </div>
     <div class='col-3'>
       <div class="image">
-        <%= image_tag @user.get_profile_image, size:"200x200" %>
+          <%= image_tag @user.get_profile_image, class:"rounded-circle", size:"200x200" %>
       </div>
     </div>
     <div class="col-2">

@@ -1,4 +1,4 @@
 <div class="right-container d-flex justify-content-end">
   <p id="chat_<%= chat.id %>" style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; boder-radius: 10px; "><%= chat.message %></p>
-  <%= button_to "削除", chat_path(chat), method: :delete, date: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm ml-2", remote: true, id: "delete_chat_#{chat.id}" %>
+  <%= button_to "削除", room_chat_path(chat), method: :delete, date: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm ml-2", remote: true, id: "delete_chat_#{chat.id}" %>
 </div>

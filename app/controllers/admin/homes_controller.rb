@@ -3,8 +3,7 @@ class Admin::HomesController < ApplicationController
 
   def top
     @users = User.all
-    @posts = Post.all
-
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
