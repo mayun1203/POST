@@ -17,7 +17,7 @@
   <%= render "layouts/error", obj: @chat %>
 </div>
 
-<%= form_with model: @chat, data: {remote: true} do |f| %>
+<%= form_with model: @chat, data: {remote: true}, url: room_chats_path(@room.id) do |f| %>
   <%= f.text_field :message %>
   <%= f.submit "送信", class: "btn btn-dark btn-sm" %>
   <%= f.hidden_field :room_id %>

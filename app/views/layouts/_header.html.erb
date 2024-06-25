@@ -1,113 +1,110 @@
-<header class="fixed-top">
-  <nav class="navbar navbar-expand-md navbar-light" style="background-color: #bb0000;">
-    <div class="container">
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <% if admin_signed_in? %>
-            <li>
-              <%= link_to admin_root_path do %>POST
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-md navbar-light navbar-fixed-top" style="background-color: #bb0000;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <% if admin_signed_in? %>
+          <li>
+            <%= link_to admin_root_path do %>POST
+              <i class="fa-solid fa-dove"></i>
+            <% end %>
+          </li>
+          <li>
+            <%=link_to admin_root_path do %>
+              <i class="fa-solid fa-envelopes-bulk"></i>投稿履歴一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_users_path do %>
+              <i class="fa-solid fa-people-robbery"></i>会員一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+            <% end %>
+          </li>
+        <% elsif user_signed_in? %>
+          <li>
+            <div class="font" style="text-align: left;">
+              <%= link_to homes_about_path do %>POST
                 <i class="fa-solid fa-dove"></i>
               <% end %>
-            </li>
-            <li>
-              <%=link_to admin_root_path do %>
-                <i class="fa-solid fa-envelopes-bulk"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to admin_users_path do %>
-                <i class="fa-solid fa-people-robbery"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_admin_session_path, method: :delete do %>
-                <i class="fa-solid fa-right-from-bracket"></i>
-              <% end %>
-            </li>
-          <% elsif user_signed_in? %>
-            <li>
-              <div class="font" style="text-align: left;">
-                <%= link_to homes_about_path do %>POST
-                  <i class="fa-solid fa-dove"></i>
-                <% end %>
+            </div>
+          </li>
+          <li>
+            <%= link_to homes_about_path do %>
+              <i class="fa-solid fa-house-chimney"></i>Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_mypage_path(current_user.id) do %>
+              <i class="fa-regular fa-circle-user"></i>マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to posts_path(genre: "shine") do %>
+              <i class="fa-solid fa-sun"></i>SUN
+            <% end %>
+          </li>
+          <li>
+            <%= link_to posts_path(genre: "dark") do %>
+              <i class="fa-regular fa-moon"></i>MOON
+            <% end %>
+          </li>
+          <li>
+            <div class="mypage-nav d-flex align-items-center">
+              <div class="bell-container mr-3">
+                <a href="javascript:void(0)" id="notifications-link">
+                  <% if unchecked_notifications.any? %>
+                    <span class="fa-stack" style="vertical-align: middle;">
+                      <i class="far fa-bell fa-lg fa-stack-1x" style="font-size: 1.5em;"></i>通知
+                      <i class="fas fa-circle n-circle fa-stack-1x">
+                        <span class="notification-count"><%= unchecked_notifications.count %></span>
+                      </i>
+                    </span>
+                  <% else %>
+                    <i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>
+                  <% end %>
+                </a>
               </div>
-            </li>
-            <li>
-              <%= link_to homes_about_path do %>
-                <i class="fa-solid fa-house-chimney"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to users_mypage_path(current_user.id) do %>
-                <i class="fa-regular fa-circle-user"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to posts_path(genre: "shine") do %>
-                <i class="fa-solid fa-sun"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to posts_path(genre: "dark") do %>
-                <i class="fa-regular fa-moon"></i>
-              <% end %>
-            </li>
-            <li>
-              <div class="mypage-nav d-flex align-items-center">
-                <div class="bell-container mr-3">
-                  <a href="javascript:void(0)" id="notifications-link">
-                    <% if unchecked_notifications.any? %>
-                      <span class="fa-stack" style="vertical-align: middle;">
-                        <i class="far fa-bell fa-lg fa-stack-1x" style="font-size: 1.5em;"></i>
-                        <i class="fas fa-circle n-circle fa-stack-1x">
-                          <span class="notification-count"><%= unchecked_notifications.count %></span>
-                        </i>
-                      </span>
-                    <% else %>
-                      <i class="far fa-bell fa-lg" style="font-size: 1.5em;"></i>
-                    <% end %>
-                  </a>
-                </div>
-              </div>
-            </li>
-            <li>
-              <%= link_to edit_user_path(current_user.id) do %>
-                <i class="fa-solid fa-gear"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa-solid fa-right-from-bracket"></i>
-              <% end %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to root_path, class:"text-left" do %>POST
-                <i class="fa-solid fa-dove"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to root_path do %>
-                <i class="fa-solid fa-house-chimney"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_session_path do %>
-                <i class="fa-solid fa-right-to-bracket"></i>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_registration_path do %>
-                <i class="fa-solid fa-plus"></i>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+            </div>
+          </li>
+          <li>
+            <%= link_to edit_user_path(current_user.id) do %>
+              <i class="fa-solid fa-gear"></i>設定
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to root_path, class:"text-left" do %>POST
+              <i class="fa-solid fa-dove"></i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to root_path do %>
+              <i class="fa-solid fa-house-chimney"></i>Home
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path do %>
+              <i class="fa-solid fa-right-to-bracket"></i>ログイン
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path do %>
+              <i class="fa-solid fa-plus"></i>新規登録
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </nav>
   <!--通知一覧を表示するモーダルウィンドウ-->

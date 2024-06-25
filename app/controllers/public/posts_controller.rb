@@ -12,6 +12,8 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.where.not(user_id: delete_user_ids)
     end
+    @posts = @posts.order(created_at: :desc)
+
     @user = current_user
     @post = Post.new
   end

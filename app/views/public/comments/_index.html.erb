@@ -1,10 +1,27 @@
 <% post.comments.each do |comment| %>
-  <%= link_to user_path(comment.user) do %>
-    <%= image_tag comment.user.get_profile_image, size: "40x40" %>
-    <%= comment.user.name %>
-  <% end %><br>
-  <%= comment.comment %>
-  <% if comment.user == current_user %>
-    <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, class: "btn btn-danger pull-right", remote: true %>
-  <% end %>
+  <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <div class="card-body text-dark mt-3">
+      <%= link_to user_path(comment.user) do %>
+        <%= image_tag comment.user.get_profile_image, class:"rounded-circle", size: "40x40" %>
+        <%= comment.user.name %>
+      <% end %>
+      <%= comment.user.account_id %><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %><br>
+      <div class="text-center">
+        <%= comment.comment %>
+      </div>
+
+      <table align="right">
+        <tr>
+          <th class=<%= "favorite-" + post.id.to_s %> >
+            <%= render "public/favorites/btn", post: post %>
+          </th>
+          <td>
+            <% if comment.user == current_user %>
+                <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger", remote: true %>
+            <% end %><br>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 <% end %>

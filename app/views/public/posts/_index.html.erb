@@ -1,23 +1,34 @@
-<div style="max-width: 25rem;">
+<div style="max-width: 30rem;">
   <% posts.each do |post| %>
-    <div class="card-body text-dark mt-3" style="border: solid;">
-      <%= link_to user_path(post.user) do %>
-        <%= image_tag post.user.get_profile_image, class:"rounded-circle", size:"50x50" %>
-        <%= post.user.name %>
-      <% end %>
-      <%= post.user.account_id %><%= post.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-      <div class="card_text text-center">
-        <%= post.body %><%= link_to post_path(post) do %>
-          <i class="fa-solid fa-envelope-open" style= "color: #bb0000;"><br></i>
+    <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+      <div class="card-body text-dark mt-3">
+        <%= link_to user_path(post.user) do %>
+          <%= image_tag post.user.get_profile_image, class:"rounded-circle", size:"50x50" %>
+          <%= post.user.name %>
         <% end %>
-        <% if post.image.present? %>
-          <div><%= image_tag post.post_image(500,200) %></div>
-        <% end %>
+        <%= post.user.account_id %><%= post.created_at.strftime('%Y/%m/%d %H:%M') %><br>
+        <div class="card_text text-center">
+          <%= post.body %>
+          <% if post.image.present? %>
+            <div><%= image_tag post.post_image(200,500) %></div>
+          <% end %>
+        </div>
+        <table align="right">
+          <tr>
+            <th class=<%= "favorite-" + post.id.to_s %> >
+              <%= render "public/favorites/btn", post: post %>
+            </th>
+            <td>
+              <%= render "public/comments/counter", post: post %>
+            </td>
+            <td>
+              <%= link_to post_path(post) do %>
+                <i class="fa-solid fa-envelope-open" style= "color: #bb0000;"><br></i>
+              <% end %>
+            </td>
+          </tr>
+        </table>
       </div>
-      <div class=<%= "favorite-" + post.id.to_s %> >
-        <%= render "public/favorites/btn", post: post %>
-      </div>
-      <%= render "public/comments/counter", post: post %>
     </div>
   <% end %>
 </div>
