@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
     @genre = params[:genre]
     @posts_shine = @posts.where(genre: 0)
     @posts_dark = @posts.where(genre: 1)

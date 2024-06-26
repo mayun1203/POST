@@ -10,6 +10,10 @@ module POST
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+
+    config.time_zone = 'Tokyo'
+
+
     # config.middleware.delete(Rack::MiniProfiler)
 
     # Configuration for the application, engines, and railties goes here.

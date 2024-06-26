@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :user
   has_many :user_rooms, dependent: :destroy
   has_many :chats, dependent: :destroy
-  has_many :rooms, through: :user_rooms
+  has_many :rooms, through: :user_rooms, dependent: :destroy
   has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
@@ -23,7 +23,7 @@ class User < ApplicationRecord
   validates :account_id, presence: true
   validates :phone_number, presence: true
   validates :email, presence: true
-  validates :introduction, length: { maximum: 50 }
+  validates :introduction, length: { maximum: 100 }
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'default-image.jpg'

@@ -1,8 +1,11 @@
 <div class='container mt-5'>
-  <div class='row'>
+  <div class='row '>
   	<div class='col text-center'>
-      <h4>＼＼How are you feeling now?／／</h4>
-      <%= link_to "SUN", posts_path(genre: "shine") %>or<%= link_to "MOON", posts_path(genre: "dark") %>
+      <h1>＼＼How are you feeling now?／／</h1><br>
+      <h2>
+        <%= link_to "SUN", posts_path(genre: "shine"), class:"btn btn-outline-danger btn-lg" %>&ensp;or&ensp;
+        <%= link_to "MOON", posts_path(genre: "dark"), class:"btn btn-outline-dark btn-lg" %>
+      </h2>
     </div>
   </div>
 </div>

@@ -1,8 +1,8 @@
-<div class="container mt-5">
+<div class="container">
   <div class="row">
-    <div class="mx-auto">
-      <h5 class="text-center">＜投稿履歴一覧＞</h5>
-      <table>
+    <div class="col">
+      <h5 class="my-5">＜投稿履歴一覧＞</h5>
+      <table class="table">
         <thead>
           <tr>
             <th>投稿日時</th>
@@ -24,6 +24,7 @@
               <td><%= link_to admin_post_path(post) do %><%= post.body %><% end %></td>
             </tr>
           <% end %>
+          <%= paginate @posts %>
         </tbody>
       </table>
     </div>

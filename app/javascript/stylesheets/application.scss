@@ -1,5 +1,16 @@
 //@use '~bootstrap/scss/bootstrap';
 
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+main {
+  margin-top: 70px;
+}
+
 i {
   color: #fff;
 }
@@ -9,16 +20,58 @@ i {
 }
 
 
-
 footer {
-  max-width: 2000px;
-  margin: 0 auto;
+
   background-color: #bb0000;
 
 }
 
 .footer-color {
   color: #fff;
+}
+
+/* ベルのアイコンの色 */
+i.far.fa-bell.fa-lg {
+  color: #fff;
+  transition: color 0.3s;
+}
+
+/* ホバー時のベルのアイコンの色 */
+i.far.fa-bell.fa-lg:hover  {
+  color: #655DFC;
+}
+
+/* 通知件数 */
+.notification-count {
+  position: absolute;
+  top: 54%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  color: #4220C7;
+  font-size: 12px;
+  transition: color 0.3s;
+}
+
+/* ホバー時の通知件数 */
+.notification-count:hover {
+  color: #655DFC;
+}
+
+/* 円マーク */
+.n-circle {
+  position: absolute;
+  padding-left: 1rem;
+  padding-top: 0rem;
+  color: #fff;
+  transition: color 0.3s;
+  &.orange {
+    color: #efa04c;
+  }
+}
+
+/* 円マークのホバー時 */
+.n-circle:hover {
+  color: #f4c986;
 }
 
 /* モーダルの背景 */

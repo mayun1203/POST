@@ -25,6 +25,7 @@
             <td><%= user.is_active ? "有効":"退会" %></td>
           </tr>
         <% end %>
+        <%= paginate @users %>
       </table>
     </div>
   </div>

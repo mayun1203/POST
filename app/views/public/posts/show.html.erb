@@ -1,37 +1,39 @@
 <div class='container mt-5'>
   <div class='row'>
     <div class='mx-auto'>
-      <div class="card-body text-dark" style="border: solid;">
-        <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, size: "40x40" %><% end %>
-        <%= link_to user_path(@post) do %><%= @post.user.name %>
-        <% end %>
-        <%= @post.user.account_id %><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %><br>
-        <div class="card_text text-center">
-          <%= @post.body %><br>
-          <% if @post.image.present? %>
-            <div><%= image_tag @post.post_image(300,500) %></div>
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+        <div class="card-body text-dark">
+          <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, class:"rounded-circle", size: "40x40" %><% end %>
+          <%= link_to user_path(@post) do %><%= @post.user.name %>
           <% end %>
+          <%= @post.user.account_id %><%= @post.created_at.to_s(:datetime_jp) %><br>
+          <div class="card_text text-center">
+            <%= @post.body %><br>
+            <% if @post.image.present? %>
+              <div><%= image_tag @post.post_image(500,200) %></div>
+            <% end %>
+          </div>
+          <table class="table table-borderless">
+            <tr>
+              <th class=<%= "favorite-" + @post.id.to_s %> >
+                <%= render "public/favorites/btn", post: @post %>
+              </th>
+              <td id="comments-counter">
+                <%= render "public/comments/counter", post: @post %>
+              </td>
+              <td>
+                <% if @post.user == current_user %>
+                  <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-secondary btn-sm" %>
+                  <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-danger" %>
+                <% end %>
+              </td>
+            </tr>
+          </table>
+          <%= render "public/comments/form", post: @post, comment: @comment %>
+          <div id="comments-index">
+            <%= render "public/comments/index", post: @post %>
+          </div>
         </div>
-        <table class="table">
-          <tr>
-            <td id="comments-counter">
-              <%= render "public/comments/counter", post: @post %>
-            </td>
-            <td>
-              <% if @post.user == current_user %>
-                <%= link_to "Edit", edit_post_path(@post), class: "btn btn-secondary btn-sm" %>
-                <%= link_to "Delete", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
-              <% end %>
-            </td>
-          </tr>
-        </table>
-        <div class=<%= "favorite-" + @post.id.to_s %> >
-            <%= render "public/favorites/btn", post: @post %>
-        </div>
-        <div id="comments-index">
-          <%= render "public/comments/index", post: @post %>
-        </div>
-        <%= render "public/comments/form", post: @post, comment: @comment %>
       </div>
     </div>
   </div>

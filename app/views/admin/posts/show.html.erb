@@ -1,7 +1,8 @@
 <div class='container mt-5'>
   <div class='row'>
     <div class='mx-auto'>
-      <div class="card-body text-dark" style="border: solid;">
+      <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+      <div class="card-body text-dark">
         <%= image_tag @post.user.get_profile_image, size: "40x40" %>
         <%= @post.user.name %>
         <%= @post.user.account_id %><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %><br>
@@ -17,6 +18,9 @@
               <%= render "public/comments/counter", post: @post %>
             </td>
             <td>
+              <%= link_to "Back", admin_root_path, class:"btn btn-info" %>
+            </td>
+            <td>
               <%= link_to "Delete", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
             </td>
           </tr>
@@ -25,6 +29,7 @@
           <%= render "public/comments/index", post: @post %>
         </div>
         <!--%= render "public/comments/form", post: @post, comment: @comment %-->
+        </div>
       </div>
     </div>
   </div>

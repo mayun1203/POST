@@ -1,9 +1,7 @@
 <div class='container'>
   <div class='row'>
     <div clas="col">
-      <div class="d-flex justify-content-center mb-2">
-        <%= render "public/searches/form" %>
-      </div>
+      <%= render "public/searches/form" %>
       <h3>New post</h3>
       <%= render "layouts/error", obj: @post %>
       <%= form_with model: @post do |f| %>
@@ -17,7 +15,7 @@
     </div>
     <div class='col-3'>
       <div class="image">
-        <%= image_tag @user.get_profile_image, size:"200x200" %>
+          <%= image_tag @user.get_profile_image, class:"rounded-circle", size:"200x200" %>
       </div>
     </div>
     <div class="col-2">
@@ -26,17 +24,17 @@
       </div>
       <%= @user.account_id %><br>
       <%= @user.introduction %><br>
-      <%= link_to "フォロー", followings_user_path(@user) %>
-      <%= link_to "フォロワー", followers_user_path(@user) %>
+      <%= link_to "Following", followings_user_path(@user), class:"btn btn-outline-info" %>
+      <%= link_to "Follower", followers_user_path(@user), class:"btn btn-outline-warning" %>
 
       <!--モーダルを使って編集に遷移-->
       <div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-      <div class="offset-10 pb-2">
-        <%= link_to 'Profile_Edit', edit_user_path(@user), method: :get, class: "btn btn-secondary btn-sm", remote: true %>
+      <div class="pb-2">
+        <%= link_to 'Profile_Edit', edit_user_path(@user), method: :get, class: "btn btn-outline-secondary btn-sm", remote: true %>
       </div>
     </div>
     <!-- タブとコンテンツ -->
-    <div class="col-md-6 offset-md-4">
+    <div class="col-md-5 offset-md-4">
       <div class="tabs">
         <ul class="nav nav-tabs">
           <li class="nav-item">

@@ -1,7 +1,7 @@
 <div class='container mt-5'>
 	<div class='row'>
   	<div class='mx-auto'>
-  		<h4 class="col text-center">＼＼User Information／／</h4>
+  		<h1 class="col text-center">＼＼User Information／／</h1>
   		<%= render "layouts/error", obj: @user %>
 
   		<%= form_with model: @user do |f| %>
@@ -22,10 +22,13 @@
   		    <tr>
             <td>
               <% unless current_user.guest? %>
-                <%= link_to "Good Bye", users_hide_user_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？？", class: "btn btn-outline-danger" %>
+                <%= link_to "Good Bye", users_hide_user_path(current_user), method: :delete, "data-confirm" => "本当に退会しますか？？", class: "btn btn-outline-dark" %>
               <% end %>
             </td>
-		        <td><%= f.submit "Save", class: "btn btn-danger" %></td>
+            <td>
+              <%= link_to "Back", users_mypage_path, class:"btn btn-outline-warning" %>
+            </td>
+		        <td><%= f.submit "Save", class: "btn btn-outline-danger" %></td>
           </tr>
         </table>
         <% end %>

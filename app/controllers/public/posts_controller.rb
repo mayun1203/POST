@@ -12,6 +12,8 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.where.not(user_id: delete_user_ids)
     end
+    @posts = @posts.order(created_at: :desc)
+
     @user = current_user
     @post = Post.new
   end
@@ -38,6 +40,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @liked_posts = Post.liked_posts(current_user)
     genre = @post.genre
     if @post.save
     else
