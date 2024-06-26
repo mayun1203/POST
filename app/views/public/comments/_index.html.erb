@@ -9,19 +9,11 @@
       <div class="text-center">
         <%= comment.comment %>
       </div>
-
-      <table align="right">
-        <tr>
-          <th class=<%= "favorite-" + post.id.to_s %> >
-            <%= render "public/favorites/btn", post: post %>
-          </th>
-          <td>
-            <% if comment.user == current_user %>
-                <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger", remote: true %>
-            <% end %><br>
-          </td>
-        </tr>
-      </table>
+      <% if comment.user == current_user %>
+        <div class="text-right">
+          <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, class: "btn btn-outline-danger", remote: true %>
+        </div>
+      <% end %><br>
     </div>
   </div>
 <% end %>

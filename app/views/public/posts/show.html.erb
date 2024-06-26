@@ -3,8 +3,8 @@
     <div class='mx-auto'>
       <div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
         <div class="card-body text-dark">
-          <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, class:"rounded-circle", size: "40x40" %><% end %>
-          <%= link_to user_path(@post) do %><%= @post.user.name %>
+          <%= link_to user_path(@post.user_id) do %><%= image_tag @post.user.get_profile_image, class:"rounded-circle", size: "40x40" %><% end %>
+          <%= link_to user_path(@post.user_id) do %><%= @post.user.name %>
           <% end %>
           <%= @post.user.account_id %><%= @post.created_at.to_s(:datetime_jp) %><br>
           <div class="card_text text-center">
