@@ -13,9 +13,9 @@ class Public::RoomsController < ApplicationController
     redirect_to room_chats_path(@room)
   end
 
-  private
+  # private
 
-  def room_params
-    params.permit(user_ids: [])
-  end
+  # def room_params
+  #   params.permit(user_ids: [])
+  # end
 end

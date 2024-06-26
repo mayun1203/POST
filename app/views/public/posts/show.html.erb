@@ -6,7 +6,7 @@
           <%= link_to user_path(@post) do %><%= image_tag @post.user.get_profile_image, class:"rounded-circle", size: "40x40" %><% end %>
           <%= link_to user_path(@post) do %><%= @post.user.name %>
           <% end %>
-          <%= @post.user.account_id %><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %><br>
+          <%= @post.user.account_id %><%= @post.created_at.to_s(:datetime_jp) %><br>
           <div class="card_text text-center">
             <%= @post.body %><br>
             <% if @post.image.present? %>
@@ -29,10 +29,10 @@
               </td>
             </tr>
           </table>
+          <%= render "public/comments/form", post: @post, comment: @comment %>
           <div id="comments-index">
             <%= render "public/comments/index", post: @post %>
           </div>
-          <%= render "public/comments/form", post: @post, comment: @comment %>
         </div>
       </div>
     </div>

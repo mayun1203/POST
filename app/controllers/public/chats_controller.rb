@@ -12,7 +12,7 @@ class Public::ChatsController < ApplicationController
     unless user_rooms.nil?
       @room = user_rooms.room
     else
-      @room = Room.new
+      @room = Room.new(user_id: current_user.id)
       @room.save
 
       UserRoom.create(user_id: current_user.id, room_id: @room.id)
@@ -35,7 +35,7 @@ class Public::ChatsController < ApplicationController
   private
 
   def chat_params
-    params.require(:chat).permit(:message, :room_id)
+    params.require(:chat).permit(:message, :room_id, :user_id)
   end
 
   def block_non_related_users

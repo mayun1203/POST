@@ -24,13 +24,13 @@
       </div>
       <%= @user.account_id %><br>
       <%= @user.introduction %><br>
-      <%= link_to "フォロー", followings_user_path(@user) %>
-      <%= link_to "フォロワー", followers_user_path(@user) %>
+      <%= link_to "Following", followings_user_path(@user), class:"btn btn-outline-info" %>
+      <%= link_to "Follower", followers_user_path(@user), class:"btn btn-outline-warning" %>
 
       <!--モーダルを使って編集に遷移-->
       <div id="product-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-      <div class="offset-10 pb-2">
-        <%= link_to 'Profile_Edit', edit_user_path(@user), method: :get, class: "btn btn-secondary btn-sm", remote: true %>
+      <div class="pb-2">
+        <%= link_to 'Profile_Edit', edit_user_path(@user), method: :get, class: "btn btn-outline-secondary btn-sm", remote: true %>
       </div>
     </div>
     <!-- タブとコンテンツ -->

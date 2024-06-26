@@ -11,6 +11,8 @@ module POST
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.time_zone = 'Tokyo'
+
 
     # config.middleware.delete(Rack::MiniProfiler)
 

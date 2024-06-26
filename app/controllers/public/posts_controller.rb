@@ -40,6 +40,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    @liked_posts = Post.liked_posts(current_user)
     genre = @post.genre
     if @post.save
     else
