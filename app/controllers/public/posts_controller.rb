@@ -43,6 +43,7 @@ class Public::PostsController < ApplicationController
     @liked_posts = Post.liked_posts(current_user)
     genre = @post.genre
     if @post.save
+
     else
       flash[:danger] = "投稿に失敗しました。"
       @posts = Post.where(genre: genre)
@@ -52,7 +53,9 @@ class Public::PostsController < ApplicationController
       @posts_shine = @posts.where(genre: 0)
       @posts_dark = @posts.where(genre: 1)
       if params[:post][:path] == "mypage"
-      render '/public/users/mypage'
+        render '/public/users/mypage'
+      else
+        redirect_to posts_path(genre: genre)
       end
       return
     end
