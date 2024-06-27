@@ -1,5 +1,4 @@
 <h3>New Post</h3>
-<%= render "layouts/error", obj: post %>
 <%= form_with(model: post, url: posts_path, local: true) do |f| %>
   <%= f.hidden_field :genre, value: genre %>
   <%= f.text_field :body, size: "30" %><br>
