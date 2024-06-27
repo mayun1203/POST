@@ -6,7 +6,7 @@
           <%= image_tag post.user.get_profile_image, class:"rounded-circle", size:"50x50" %>
           <%= post.user.name %>
         <% end %>
-        <%= post.user.account_id %>&nbsp;&nbsp;<%= post.created_at.to_s(:datetime_jp) %><br>
+        <%= post.user.account_id %>&nbsp;&nbsp;<%= l post.created_at, format: :long %><br>
         <div class="card_text text-center">
           <%= post.body %>
           <% if post.image.present? %>
