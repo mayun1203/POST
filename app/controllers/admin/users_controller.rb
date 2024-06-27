@@ -16,8 +16,13 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to admin_user_path(@user)
+    if @user.update(user_params)
+      flash[:success] = "登録に成功しました。"
+      redirect_to admin_user_path(@user)
+    else
+      flash[:danger] = "登録に失敗しました。"
+      render :edit
+    end
   end
 
   private
