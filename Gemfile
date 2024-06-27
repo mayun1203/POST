@@ -58,6 +58,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "enum_help"
 gem 'kaminari'
+#日本語に対応するgem
+#gem 'rails-i18n'
 
 gem 'dotenv-rails'
 group :production do
