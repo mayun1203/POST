@@ -1,9 +1,6 @@
 class Public::FavoritesController < ApplicationController
   def create
-
     #投稿にいいねされた時の通知
-
-
     @post = Post.find(params[:post_id])
     @favorite = current_user.favorites.new(post_id: @post.id)
     if @favorite.save
