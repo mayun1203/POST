@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-md navbar-light navbar-fixed-top" style="background-color: #bb0000;">
     <div class="container-fulid">
       <% if admin_signed_in? %>
-        <%= link_to admin_root_path do %>POST
+        <%= link_to admin_session_path do %>POST
           <i class="fa-solid fa-dove"></i>
         <% end %>
       <% elsif user_signed_in? %>
@@ -39,7 +39,6 @@
             <% end %>
           </li>
         <% elsif user_signed_in? %>
-
           <li>
             <%= link_to homes_about_path do %>
               <i class="fa-solid fa-house-chimney"></i>&ensp;
