@@ -20,7 +20,12 @@
 * 悲しい事や悩みがある時に誰かからの支えが必要な時
 
 ## 設計書
-後ほど作成予定。
+* ER図/Ul Flows.
+https://app.diagrams.net/#G1WnqOqTlTRF8rCzr4eZgHWNqDUrExB4u8#%7B%22pageId%22%3A%22gCOOIughbeW2RYCbTZ6F%22%7D
+* テーブル定義書<br>
+https://docs.google.com/spreadsheets/d/13ZBDCFv0t3-J0Nq2fkXoYLljYRzfQYLVWNmGz_FI54U/edit?gid=1044500859#gid=1044500859
+* アプリケーション設計書<br>
+https://docs.google.com/spreadsheets/d/1L-aNWQDHuAb8prWgzzgSGT2QwUzCQeyVL0sMA20a09w/edit?gid=549108681#gid=549108681
 
 ## 開発環境
 * OS：Linux(CentOS)
@@ -30,5 +35,5 @@
 * IDE：Cloud9
 
 ## 使用素材
-後ほど記述予定。
+* Font Awesome
 
