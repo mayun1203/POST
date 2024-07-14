@@ -17,11 +17,11 @@
       <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
         <%= link_to 'Chat', room_chat_path(@user.id), class: "btn btn-outline-danger" %>
       <% end %>
-      <%#= link_to (rooms_path(user_ids: [current_user.id, @profile.user.id]), method: :post, class: "ml-3") do %>
-          <!--div class="chat-btn">
-           <div class="chat-p">チャットで相談する</div>
-          </div-->
-        <%# end %>
+      <!--%= link_to (rooms_path(user_ids: [current_user.id, @profile.user.id]), method: :post, class: "ml-3") do %>-->
+      <!--  <div class="chat-btn">-->
+      <!--   <div class="chat-p">チャットで相談する</div>-->
+      <!--  </div>-->
+      <!--% end %>-->
     </div>
     <div class="col-md-5 offset-md-4">
       <div class="tabs">
