@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, :only => [:mypage, :show, :destroy]
+  before_action :ensure_guest_user, only: [:edit]
 
   def mypage
     @user = current_user
@@ -76,6 +77,12 @@ class Public::UsersController < ApplicationController
     user = User.find(params[:id])
     if user.is_deleted
       redirect_to root_path
+    end
+  end
+
+  def ensure_guest_user
+    if @user.guest_user?
+      redirect_to users_mypage_path(current_user), notice: "ゲストユーザーはユーザー設定画面に遷移できません。"
     end
   end
 end

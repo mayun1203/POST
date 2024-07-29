@@ -13,7 +13,7 @@ class Public::SessionsController < Devise::SessionsController
     redirect_to homes_about_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
-   protected
+  protected
 
   def reject_user
     @user = User.find_by(email: params[:user][:email].downcase)
