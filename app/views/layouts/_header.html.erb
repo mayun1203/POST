@@ -2,19 +2,19 @@
   <nav class="navbar navbar-expand-md navbar-light navbar-fixed-top" style="background-color: #bb0000;">
     <div class="container-fulid">
       <% if admin_signed_in? %>
-        <%= link_to admin_session_path do %>POST
+        <%= link_to admin_session_path, class: 'nav-link text-light' do %>POST
           <i class="fa-solid fa-dove"></i>
         <% end %>
       <% elsif user_signed_in? %>
-        <%= link_to homes_about_path do %>POST
+        <%= link_to homes_about_path, class: 'nav-link text-light' do %>POST
           <i class="fa-solid fa-dove"></i>
         <% end %>
       <% else %>
-        <%= link_to root_path do %>POST
+        <%= link_to root_path, class: 'nav-link text-light' do %>POST
           <i class="fa-solid fa-dove"></i>
         <% end %>
       <% end %>
-    </div>
+     </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -77,11 +77,13 @@
               </div>
             </div>
           </li>
-          <li>
-            <%= link_to edit_user_path(current_user.id) do %>
-              <i class="fa-solid fa-gear"></i>&ensp;
-            <% end %>
-          </li>
+          <% unless current_user.guest_user? %>
+            <li>
+              <%= link_to edit_user_path(current_user) do %>
+                <i class="fa-solid fa-gear"></i>&ensp;
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               <i class="fa-solid fa-right-from-bracket"></i>&ensp;

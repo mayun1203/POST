@@ -75,8 +75,10 @@ class User < ApplicationRecord
     end
   end
 
+  GUEST_USER_EMAIL = "guest1@example.com"
+
   def self.guest
-    find_or_create_by!(email: 'guest1@example.com') do |user|
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲスト"
       user.account_id = "@guest"
@@ -88,6 +90,10 @@ class User < ApplicationRecord
 
   def guest?
     account_id == "@guest"
+  end
+
+  def guest_user?
+    email == GUEST_USER_EMAIL
   end
 
   #退会ユーザーはログインできなくする
