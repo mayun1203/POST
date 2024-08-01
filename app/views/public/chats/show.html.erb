@@ -2,7 +2,6 @@
   <div class='row'>
     <div class='mx-auto'>
       <h5 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">＜<%= @user.name %>さんとのチャット＞</h5>
-
       <div class="message" style="width: 400px;">
         <% @chats.each do |chat| %>
           <% if chat.user_id == current_user.id %>
@@ -15,11 +14,9 @@
           <% end %>
         <% end %>
       </div>
-
       <div class="errors">
         <%= render "layouts/error", obj: @chat %>
       </div>
-
       <%= form_with model: @chat, data: {remote: true}, url: room_chats_path(@room.id) do |f| %>
         <%= f.text_field :message %>
         <%= f.submit "送信", class: "btn btn-dark btn-sm" %>
