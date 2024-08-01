@@ -22,10 +22,14 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <% if admin_signed_in? %>
-
           <li>
             <%=link_to admin_root_path do %>
               <i class="fa-solid fa-envelopes-bulk"></i>投稿履歴一覧&ensp;
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_post_comments_path do %>
+              <i class="fa-solid fa-comment-dots"></i>コメント一覧&ensp;
             <% end %>
           </li>
           <li>
