@@ -1,7 +1,7 @@
 class Admin::PostCommentsController < ApplicationController
 
   def index
-    @post_comments = Comment.order(create_at: :desc).page(params[:page]).per(10)
+    @post_comments = Comment.order(created_at: :desc).page(params[:page]).per(10)
     @users = User.all
   end
 
