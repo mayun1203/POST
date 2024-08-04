@@ -81,7 +81,7 @@ class Public::UsersController < ApplicationController
   end
 
   def ensure_guest_user
-    if @user.guest_user?
+    if current_user.guest_user?
       redirect_to users_mypage_path(current_user), notice: "ゲストユーザーはユーザー設定画面に遷移できません。"
     end
   end
